@@ -20,7 +20,7 @@ This bash-terminal app can take in one of the following commands:
 
 ##Here is a quick Demo...
 
-![GitHub Logo](/screen_shots/Liri.mov)
+![GitHub Logo](/screen_shots/Liri.gif)
 Format: ![Alt Text](url)
 
 
