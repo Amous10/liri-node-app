@@ -11,8 +11,9 @@ var moment = require("moment");
 var command = process.argv[2];
 var value = process.argv.slice(3).join(' ');
 // var searchValue = ""; //movie or song or band
+switchCase(command, value);
 
-function switchCase() {
+function switchCase(command, value) {
     switch (command) {
         case "concert-this":
             concertThis(value);
@@ -95,13 +96,17 @@ function concertThis(artist) {
                 fs.appendFileSync('log.txt', response.data[0].venue.city);
                 fs.appendFileSync('log.txt', momentDT.format("dddd, MMMM Do YYYY"));
                 fs.appendFileSync('log.txt', "-----------------------");
-
-            } else {
-                console.log("No results found.");
-            };
+            }
         }
-    );
+
+    ).catch(function (error) {
+        console.log(error);
+        console.log("No Results found. ");
+    });
 }
+
+
+
 
 function movieThis(movie) {
 
@@ -134,10 +139,13 @@ function movieThis(movie) {
                 //Rotten Tomatoes
                 console.log("RottenTomatoes: " + response.data.tomatoRating);
                 console.log("-----------------------");
-            } else {
-                console.log("No results found.");
             }
-        });
+        }
+
+    ).catch(function (error) {
+        console.log(error);
+        console.log("No Results found. ");
+    });
 }
 
 //create function do-what-it-says
@@ -151,15 +159,15 @@ function randomSearch(newArr) {
             return console.log(error);
         }
         console.log(data);
-        
 
-        const newArr = data.split(",");
-        comm = newArr[0];
-        val = newArr[1];
+
+        let newArr = data.split(",");
+        let comm = newArr[0];
+        let val = newArr[1];
         console.log(newArr)
         // Calls main controller to do something based on action and argument.
         switchCase(comm, val);
         // fs.appendFile("log.txt, ")//writes to log.txt
     });
-   
+
 }
