@@ -63,12 +63,14 @@ function spotifyThis(song) {
                 console.log("Album: " + songData.album.name);
                 console.log("-----------------------");
 
+                var songString = songData.artists[0].name + '\n' + songData.name + '\n' + songData.preview_url + '\n' + songData.album.name + '\n' + "-----------------------";
+
                 //adds text to log.txt
-                fs.appendFileSync('log.txt', songData.artists[0].name);
-                fs.appendFileSync('log.txt', songData.name);
-                fs.appendFileSync('log.txt', songData.preview_url);
-                fs.appendFileSync('log.txt', songData.album.name);
-                fs.appendFileSync('log.txt', "-----------------------");
+                fs.appendFileSync('log.txt', songString);
+                // fs.appendFileSync('log.txt', songData.name);
+                // fs.appendFileSync('log.txt', songData.preview_url);
+                // fs.appendFileSync('log.txt', songData.album.name);
+                // fs.appendFileSync('log.txt', "-----------------------");
             };
         };
 
